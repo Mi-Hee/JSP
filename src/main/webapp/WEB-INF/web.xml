@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>helloJsp</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 컨텍스트 초기화 매개변수 -->
+  <context-param>
+  	<param-name>INIT_PARAM</param-name>
+  	<param-value>web.xml에 저장한 초기화 변수</param-value>
+  </context-param>
+  
+  <!-- 데이터베이스 접속 정보 -->
+  <context-param>
+  	<param-name>driver</param-name>
+  	<param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>url</param-name>
+  	<param-value>jdbc:oracle:thin:@localhost:1521:orcl</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>id</param-name>
+  	<param-value>test</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>pw</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+  
+  <!--jndi-->
+<resource-ref>
+	<description>Oracle Datasource example</description>
+	<res-ref-name>jdbc/myoracle</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+</resource-ref>
+  
+  <!-- 한글깨짐 방지를 위한 필터 설정 시작 -->
+  <filter>
+  	<filter-name>SetCharacterEncoding</filter-name>
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  		<init-param>
+  			<param-name>encoding</param-name>
+  			<param-value>utf-8</param-value>
+  		</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>SetCharacterEncoding</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 한글깨짐 방지를 위한 필터 설정 끝 -->
+  
+  <!-- 에러 페이지 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/Exception.jsp</location>
+  </error-page>
+  
+  <!-- 세션 유지시간을 '분' 으로 설정 -->
+  <session-config>
+    <session-timeout>20</session-timeout>
+  </session-config>
+  
+  
+  <!--
+  <servlet>
+  	<servlet-name>서블릿 이름</servlet-name>
+  	<servlet-class>서블릿 클래스 이름</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>서블릿 이름</servlet-name>
+  	<url-pattern>/test.do</url-pattern>
+  </servlet-mapping>
+  -->
+</web-app>
+
+
+
+
+
+
+
+
+
+
